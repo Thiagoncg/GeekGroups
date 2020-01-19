@@ -1,8 +1,11 @@
 const Dev = require('../models/Dev');
 const parseStringAsArray = require('../Utils/parseStringAsArray');
 
+const devDistanci = 50000;
+
 
 module.exports = {
+
     async index(request, response) {
         //Buscar todos os devs num raio de 50Km
         //Filtrar por tecnologias
@@ -11,18 +14,18 @@ module.exports = {
         const techsArray = parseStringAsArray(techs);
 
         const devs = await Dev.find({
-            techs:{
+            techs: {
                 $in: techsArray,
 
             },
-            location:{
-                $near:{
-                    $geometry:{
-                        type:'Point', 
-                        coordinates:[longitude, latitude],
+            location: {
+                $near: {
+                    $geometry: {
+                        type: 'Point',
+                        coordinates: [longitude, latitude],
 
                     },
-                    $maxDistance: 50000,
+                    $maxDistance: devDistanci,
 
                 },
 
