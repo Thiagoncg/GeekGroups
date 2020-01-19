@@ -26,10 +26,10 @@ function App() {
 
   async function handleAddDev(data) {
 
-    const response = await api.post('/devs', data)
+     const response = await api.post('/devs', data);
 
 
-    setDevs([...devs, response.data]);
+     setDevs([...devs, response.data]);
   }
 
   return (
@@ -41,12 +41,10 @@ function App() {
 
 
       </aside>
-
-      {/* lista de devs */}
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
+            <DevItem key={dev.id} dev={dev} />
           ))}
 
         </ul>
@@ -55,6 +53,4 @@ function App() {
 
   );
 }
-
-
 export default App;
